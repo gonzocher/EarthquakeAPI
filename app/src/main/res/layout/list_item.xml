@@ -10,7 +10,7 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/mag"
+        android:id="@+id/magnitude"
         android:layout_width="50dp"
         android:layout_height="50dp"/>
 
