@@ -36,21 +36,14 @@ public class EarthquakeActivity extends AppCompatActivity {
         setContentView(R.layout.earthquake_activity);
 
         //Create an ArrayList of Earthquake objects
-        ArrayList<Earthquake> earthquakes = new ArrayList<>();
-        earthquakes.add(new Earthquake("4.0","San Francisco","Feb 2, 2019"));
-        earthquakes.add(new Earthquake("4.2","London","Feb 2, 2019"));
-        earthquakes.add(new Earthquake("3.6","Tokyo","Feb 2, 2019"));
-        earthquakes.add(new Earthquake("4.8","Mexico City","Feb 2, 2019"));
-        earthquakes.add(new Earthquake("5.5","Moscow","Feb 2, 2019"));
-        earthquakes.add(new Earthquake("4.6","Rio de Janeiro","Feb 2, 2019"));
-        earthquakes.add(new Earthquake("2.1","Paris","Feb 2, 2019"));
+        ArrayList<Earthquake> earthquakes = QueryUtils.extractEarthquakes();
 
         // Create an EarthquakeArrayAdapter, whose data source is a list of
         // Earthquakes. The adapter knows how to create list item views for each item
         // in the list.
         EarthquakeArrayAdapter earthquakeArrayAdapter = new EarthquakeArrayAdapter(this, earthquakes);
 
-        // Get a reference to the ListView, and attach the adapter to the listView.
+        // Get a reference to the ListView, and attach the adapter to the listView so the list can be populated in the user interface.
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(earthquakeArrayAdapter);
     }
