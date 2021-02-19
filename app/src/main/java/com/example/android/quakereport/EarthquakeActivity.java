@@ -15,11 +15,17 @@
  */
 package com.example.android.quakereport;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -41,10 +47,29 @@ public class EarthquakeActivity extends AppCompatActivity {
         // Create an EarthquakeArrayAdapter, whose data source is a list of
         // Earthquakes. The adapter knows how to create list item views for each item
         // in the list.
-        EarthquakeArrayAdapter earthquakeArrayAdapter = new EarthquakeArrayAdapter(this, earthquakes);
+        final EarthquakeArrayAdapter earthquakeArrayAdapter = new EarthquakeArrayAdapter(this, earthquakes);
 
         // Get a reference to the ListView, and attach the adapter to the listView so the list can be populated in the user interface.
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(earthquakeArrayAdapter);
+
+        // Set a click listener on that View
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            // The code in this method will be executed when the ListView is clicked on.
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l){
+                // Find the current earthquake that was clicked on
+                Earthquake currentEarthquake = earthquakeArrayAdapter.getItem(position);
+
+                // Convert the String URL into a URI object (to pass into the Intent constructor)
+                Uri earthquakeUri = Uri.parse(currentEarthquake.getMurl());
+
+                // Create a new intent to view the earthquake URI
+                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);
+
+                // Send the intent to launch a new activity
+                startActivity(websiteIntent);
+            }
+        });
     }
 }

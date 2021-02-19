@@ -4,13 +4,17 @@ import java.util.Date;
 
 public class Earthquake {
     // Magnitude of the earthquake
-    private final String mMagnitude;
+    private final double mMagnitude;
 
     // location of the earthquake
     private final String mLocation;
 
     // Date of the earthquake
     private long mTimeInMilliseconds;
+
+    //URL of the earthquake
+    private String mUrl;
+
     /*
      * Create a new Earthquake object.
      *
@@ -18,16 +22,17 @@ public class Earthquake {
      * @param location is the location of the earthquake
      * @param timeInMilliseconds is the time in milliseconds of the earthquake from the Epoch
      * */
-    public Earthquake(String magnitude, String location, long timeInMilliseconds) {
+    public Earthquake(double magnitude, String location, long timeInMilliseconds, String url) {
         mMagnitude = magnitude;
         mLocation = location;
         mTimeInMilliseconds = timeInMilliseconds;
+        mUrl = url;
     }
 
     /**
      * Get the magnitude of the earthquake
      */
-    public String getMmagnitude() {
+    public double getMmagnitude() {
         return mMagnitude;
     }
 
@@ -42,9 +47,15 @@ public class Earthquake {
      * Get the date of the earthquake
      * @return
      */
-    public long getTimeInMilliseconds() {
+    public long getMtimeInMilliseconds() {
         return mTimeInMilliseconds;
     }
+
+    /**
+     * Get the URL of the earthquake
+     * @return
+     */
+    public String getMurl() { return mUrl;}
 
 
 }
